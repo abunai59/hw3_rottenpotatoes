@@ -15,7 +15,8 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  puts page.body.split(/\\n/)
+  match = /#{e1}.*#{e2}/m =~ page.body
+  match.should_not be_nil
 end
 
 Then /I should see all of the movies/ do
